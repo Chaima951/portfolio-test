@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="fr">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Icônes & librairies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxa1wEswçc2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <link rel="icon" type="image/png" href="/assets/pj/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/pj/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/pj/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/pj/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/pj/favicons/site.webmanifest" />
+    <!--------------------------------------------------------------------------------------------------------->
+
+    <title>Abdelhanine Chaima</title>
+
+    <!-- =================== CSS INTÉGRÉ =================== -->
+    <style>
+        /* ------------------ VARIABLES GLOBALES ------------------ */
+
+        :root {
+            --bg-color: #020617;
+            --bg-alt: #02081e;
+            --card-bg: #020617;
+            --card-bg-soft: #02081e;
+            --primary: #0ea5e9;
+            --primary-soft: rgba(56, 189, 248, 0.15);
+            --primary-strong: #0284c7;
+            --text-color: #e5e7eb;
+            --text-muted: #9ca3af;
+            --border-subtle: rgba(148, 163, 184, 0.3);
+            --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
+            --radius-xl: 22px;
+            --transition-fast: 0.25s ease;
+            --section-padding: 6rem;
+            --max-width: 1200px;
+            --nav-height: 70px;
+            --gradient-main: radial-gradient(circle at top, #0ea5e9 0, #020617 45%, #000 100%);
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                        "Segoe UI", sans-serif;
+        }
+
+        /* ------------------ RESET DE BASE ------------------ */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: var(--font-main);
+            background: radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        section {
+            scroll-margin-top: calc(var(--nav-height) + 1.5rem);
+        }
+
+        /* ------------------ HEADER / NAVBAR ------------------ */
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            padding: 0 4%;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(18px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: lowercase;
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .logo::before {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 28px;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .navbar {
+            display: flex;
+            gap: 1.6rem;
+        }
+
+        .navbar a {
+            position: relative;
+            font-size: 0.95rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+
+        .navbar a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-strong));
+            transition: width var(--transition-fast);
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--text-color);
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
+
+        #menu-icon {
+            font-size: 1.7rem;
+            color: var(--text-color);
+            display: none;
+            cursor: pointer;
+        }
+
+        /* ------------------ SECTIONS GLOBALES ------------------ */
+
+        .home,
+        .profil,
+        .formations,
+        .experiences,
+        .certifications,
+        .skills,
+        .projet {
+            padding: var(--section-padding) 7% 4rem;
+            max-width: 100%;
+        }
+
+        .profil > *,
+        .formations > *,
+        .experiences > *,
+        .certifications > *,
+        .skills > *,
+        .projet > * {
+            max-width: var(--max-width);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .heading {
+            width: 100%;
+            font-size: 2.2rem;
+            text-align: center;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            color: #e5f4ff;
+            position: relative;
+        }
+
+        .heading::after {
+            content: "";
+            position: absolute;
+            bottom: -0.9rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 88px;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        /* ------------------ BOUTON ------------------ */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: radial-gradient(circle at top left, var(--primary-soft), #020617 55%);
+            color: var(--text-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 14px 35px rgba(15, 23, 42, 0.85);
+            transition:
+                transform 0.18s ease,
+                box-shadow 0.18s ease,
+                border-color 0.18s ease,
+                background 0.18s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            border-color: var(--primary);
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), #020617 65%);
+            box-shadow: 0 18px 45px rgba(8, 47, 73, 0.95);
+        }
+
+        /* ------------------ HOME ------------------ */
+
+        .home {
+            padding-top: calc(var(--section-padding) + var(--nav-height));
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.5fr);
+            align-items: center;
+            gap: 3rem;
+            color: var(--text-color);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .home::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 10% 0, rgba(56, 189, 248, 0.22), transparent 58%);
+            opacity: 0.9;
+            z-index: -2;
+        }
+
+        .home::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 90% 100%, rgba(8, 47, 73, 0.85), transparent 55%);
+            z-index: -3;
+        }
+
+        .home-content {
+            max-width: 620px;
+        }
+
+        .home-content h1 {
+            font-size: clamp(2.2rem, 3.4vw, 2.8rem);
+            text-transform: uppercase;
+            letter-spacing: 0.45em;
+            color: #f1f5f9;
+            margin-bottom: 0.8rem;
+        }
+
+        .home-content h1 span {
+            display: block;
+            font-size: clamp(2.4rem, 4vw, 3.1rem);
+            letter-spacing: 0.08em;
+            color: var(--primary);
+        }
+
+        .text-animate h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            color: var(--text-muted);
+        }
+
+        .home-content p {
+            margin-top: 1.4rem;
+            font-size: 0.98rem;
+            color: var(--text-muted);
+        }
+
+        .home-content p span {
+            color: #e0f2fe;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.7rem;
+            margin: 1.8rem 0 1.4rem;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.13), #020617 65%);
+            transition: transform var(--transition-fast),
+                        box-shadow var(--transition-fast),
+                        border-color var(--transition-fast),
+                        color var(--transition-fast),
+                        background var(--transition-fast);
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-2px);
+            color: #e0f2fe;
+            border-color: var(--primary);
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), #020617 70%);
+            box-shadow: 0 15px 35px rgba(8, 47, 73, 0.9);
+        }
+
+        .home-imgHover {
+            width: 100%;
+            height: 380px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 20% 0, rgba(56, 189, 248, 0.75), transparent 60%),
+                        radial-gradient(circle at 80% 100%, rgba(8, 47, 73, 0.95), transparent 55%);
+            filter: blur(1px);
+            opacity: 0.85;
+            box-shadow: 0 0 110px rgba(56, 189, 248, 0.45);
+        }
+
+        /* ------------------ PROFIL ------------------ */
+
+        .profil {
+            background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), #020617 70%);
+        }
+
+        .profil-img {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .profil-img img {
+            width: 180px;
+            height: 180px;
+            border-radius: 28px;
+            object-fit: cover;
+            border: 2px solid rgba(148, 163, 184, 0.4);
+            box-shadow: var(--shadow-soft);
+            background: linear-gradient(145deg, #020617, #02081e);
+        }
+
+        .description {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2rem 2.2rem;
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), rgba(15, 23, 42, 0.98));
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            box-shadow: var(--shadow-soft);
+            font-size: 0.98rem;
+            color: var(--text-muted);
+        }
+
+        .description span {
+            color: #e0f2fe;
+        }
+
+        /* ------------------ FORMATIONS ------------------ */
+
+        .formations {
+            background: linear-gradient(180deg, #020617 0, #02081e 100%);
+        }
+
+        .scolaire-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2.4rem;
+        }
+
+        .scolaire-column .title {
+            font-size: 1.1rem;
+            margin-bottom: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #e0f2fe;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .scolaire-column .title i {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .scolaire-box {
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.3), var(--bg-alt));
+            box-shadow: var(--shadow-soft);
+            padding: 1.8rem 1.7rem;
+        }
+
+        .scolaire-content + .scolaire-content {
+            margin-top: 1.4rem;
+            border-top: 1px dashed rgba(148, 163, 184, 0.4);
+            padding-top: 1.4rem;
+        }
+
+        .scolaire-content .year {
+            font-size: 0.9rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .scolaire-content .year i {
+            font-size: 1rem;
+        }
+
+        .scolaire-content h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scolaire-content h3 a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .scolaire-content h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .scolaire-content ul {
+            margin-left: 1rem;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .scolaire-content li {
+            margin-bottom: 0.2rem;
+        }
+
+        .content-decs {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        .content-decs a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .content-decs a:hover {
+            text-decoration: underline;
+        }
+
+        /* ------------------ EXPERIENCES ------------------ */
+
+        .experiences {
+            background: radial-gradient(circle at top, #020617 0, #000 100%);
+        }
+
+        .experiences-row {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .experiences-column .title {
+            font-size: 1.1rem;
+            margin-bottom: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #e0f2fe;
+        }
+
+        .experiences-column .title i {
+            color: var(--primary);
+        }
+
+        .experiences-box {
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.2), #020617);
+            box-shadow: var(--shadow-soft);
+            padding: 1.8rem 1.7rem;
+        }
+
+        .experiences-content + .experiences-content {
+            margin-top: 1.6rem;
+            border-top: 1px dashed rgba(148, 163, 184, 0.4);
+            padding-top: 1.6rem;
+        }
+
+        .experiences .year {
+            font-size: 0.9rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .experiences h3 {
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .experiences h3 a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .experiences h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .experiences ul {
+            margin-left: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .experiences li {
+            margin-bottom: 0.25rem;
+        }
+
+        .rapport {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .rapport a {
+            text-decoration: none;
+            color: var(--primary);
+            margin-left: 0.5rem;
+        }
+
+        /* ------------------ CERTIFICATIONS ------------------ */
+
+        .certifications {
+            background: linear-gradient(180deg, #02081e 0, #020617 100%);
+        }
+
+        .certification-grid-wrapper {
+            max-width: var(--max-width);
+            margin: 0 auto 2.5rem;
+            padding: 1.8rem 2rem;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.2), #020617);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .certification-grid h3 {
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #e0f2fe;
+        }
+
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+
+        .certification-item {
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: rgba(15, 23, 42, 0.85);
+            padding: 0.6rem;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.8);
+            transition:
+                transform var(--transition-fast),
+                box-shadow var(--transition-fast),
+                border-color var(--transition-fast),
+                back-ground var(--transition-fast);
+        }
+
+        .certification-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            background: rgba(15, 23, 42, 1);
+            box-shadow: 0 18px 40px rgba(8, 47, 73, 0.95);
+        }
+
+        .certification-item img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        /* ------------------ COMPÉTENCES ------------------ */
+
+        .skills {
+            background: radial-gradient(circle at 10% 0, rgba(56, 189, 248, 0.2), #020617 65%);
+        }
+
+        .skills-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.8rem;
+        }
+
+        .skill-box {
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), #020617);
+            padding: 1.6rem 1.4rem;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-box .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.2rem;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .skill-box .icon i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .skill-box h3 {
+            font-size: 1.02rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #e0f2fe;
+        }
+
+        .skill-box ul {
+            margin-left: 1rem;
+            color: var(--text-muted);
+        }
+
+        .skill-box li {
+            margin-bottom: 0.22rem;
+        }
+
+        .skill-box p {
+            margin-top: 0.45rem;
+            font-size: 0.9rem;
+            color: #cbd5f5;
+        }
+
+        /* ------------------ PROJETS ------------------ */
+
+        .projet {
+            background: linear-gradient(180deg, #020617 0, #000 100%);
+        }
+
+        .projet-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.8rem;
+        }
+
+        .projet-box {
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.28), #020617);
+            padding: 1.6rem 1.4rem;
+            box-shadow: var(--shadow-soft);
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .projet-box .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .projet-box .icon i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .projet-box h3 {
+            font-size: 1.02rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #e0f2fe;
+        }
+
+        .projet-box ul,
+        .projet-box ol {
+            margin-left: 1rem;
+            color: var(--text-muted);
+        }
+
+        .projet-box li {
+            margin-bottom: 0.2rem;
+        }
+
+        .projet-box span {
+            color: #e0f2fe;
+        }
+
+        .projet-box a.bxs-file-pdf {
+            color: var(--primary);
+            text-decoration: none;
+            margin-left: 0.4rem;
+        }
+
+        /* ------------------ FOOTER ------------------ */
+
+        .footer {
+            border-top: 1px solid rgba(148, 163, 184, 0.4);
+            padding: 1.8rem 0 1.4rem;
+            background: #00010a;
+            text-align: center;
+        }
+
+        .footer .social {
+            display: flex;
+            justify-content: center;
+            gap: 0.7rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .footer .social a {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), #020617 65%);
+            transition: all var(--transition-fast);
+        }
+
+        .footer .social a:hover {
+            border-color: var(--primary);
+            color: #e0f2fe;
+            transform: translateY(-1px);
+        }
+
+        .footer .copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ------------------ LIENS GLOBAUX ------------------ */
+
+        a {
+            color: var(--primary);
+        }
+
+        a:hover {
+            color: var(--primary-strong);
+        }
+
+        /* ------------------ RESPONSIVE ------------------ */
+
+        @media (max-width: 1050px) {
+            .home {
+                grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
+                gap: 2.2rem;
+            }
+
+            .skills-grid,
+            .projet-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .scolaire-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 1.4rem;
+            }
+
+            #menu-icon {
+                display: block;
+            }
+
+            .navbar {
+                position: absolute;
+                top: var(--nav-height);
+                right: 0;
+                left: 0;
+                padding: 1rem 1.4rem 1.2rem;
+                flex-direction: column;
+                gap: 0.8rem;
+                background: rgba(2, 6, 23, 0.98);
+                border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+                transform-origin: top;
+                transform: scaleY(0);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform 0.18s ease, opacity 0.18s ease;
+            }
+
+            .navbar.active {
+                transform: scaleY(1);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .home {
+                grid-template-columns: 1fr;
+            }
+
+            .home-imgHover {
+                height: 260px;
+            }
+
+            .description {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .skills-grid,
+            .projet-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certification-grid-wrapper {
+                padding: 1.3rem 1.2rem;
+            }
+
+            .home,
+            .profil,
+            .formations,
+            .experiences,
+            .certifications,
+            .skills,
+            .projet {
+                padding-inline: 5%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .home-content h1 {
+                letter-spacing: 0.25em;
+            }
+
+            .heading {
+                letter-spacing: 0.26em;
+                font-size: 1.8rem;
+            }
+
+            .profil-img img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-----------   NAVIGATION---------------------------------------------------------------->
+    <header class="header">
+        <a href="#" class="logo">.Chaima</a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <nav class="navbar">
+            <a href="#" class="active"> Accueil</a>
+            <a href="#profil"> Profil</a>
+            <a href="#formations" >Formations</a>
+            <a href="#experiences" >Expériences</a>
+            <a href="#certifications" >Certifications</a>
+            <a href="#competences" >Compétences</a>
+            <a href="#projets" >Projets</a>
+            <a href="veille.html" target="_blank">Veille</a>
+        </nav>
+    </header>
+
+    <!-----------ACCUEIL---------------------------------------------------------------->
+    <section class="home" id="home" style="background-image: url('assets/pj/img/home-bg.png');">
+
+        <div class="home-content">
+            <h1>Abdelhanine <span>Chaima</span></h1>
+            <div class="text-animate">
+                <h3>étudiante en informatique.</h3>
+            </div>
+            <br/>
+
+            <p>Passionné par les technologies de l'information, je développe mes compétences en systèmes et réseaux afin d’optimiser, sécuriser et améliorer la performance des infrastructures numériques.</p>
+
+            <div class="social-icons">
+                <a href="https://github.com/" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+
+        <div class="home-imgHover"></div>
+    </section>
+
+    <!-----------PROFIL---------------------------------------------------------------->
+    <section class="profil" id="profil">
+        <h2 class="heading">PROFIL</h2>
+    
+        <div class="profil-img">
+            <img src="assets/pj/img/photo-profil.jpg" alt="">
+        </div>
+
+        <div class="description">
+            <p>Je m'appelle <span>Abdelhnine Chaima</span>, j'ai <span>20 ans</span> et je suis actuellement en <span> en première année de BTS SIO</span> 
+            (<span>Services Informatiques aux Organisations</span>), spécialité <span>SISR</span> (<span>Solutions d’Infrastructure, Systèmes et Réseaux</span>), 
+            au <span>Lycée Turgot</span>. Ce Portfolio fait partie de ma formation au BTS.</p>
+            <br/>
+
+            <p>Depuis toujours passionnée par les réseaux informatiques, j’ai eu l’occasion, au cours de ma formation, de travailler sur la création et la gestion de micro-réseaux en utilisant des outils tels que pfSense, Windows Server et Ubuntu. Lors de mon stage, j’ai également exploré le développement web en créant un site avec Elementor et participé à la conception d’une application avec Spring Boot et Angular. Malgré ces expériences variées, c’est la gestion des réseaux et l’utilisation de Packet Tracer qui continuent de me passionner le plus.</p>
+            <br/>
+
+            <p>Parallèlement, je développe mes compétences en programmation, virtualisation et gestion des infrastructures cloud, des domaines essentiels pour évoluer dans l’univers des systèmes et des réseaux informatiques.
+
+Mon objectif professionnel est de devenir administratrice réseau, un métier qui me permettrait de mettre mes compétences techniques au service de la conception, de la configuration et de la gestion des infrastructures réseau des entreprises. Je souhaite assurer le bon fonctionnement, la performance et la fiabilité des réseaux, tout en optimisant leur organisation et leur maintenance pour soutenir efficacement les activités de l’entreprise.
+
+Déterminée à transformer ma passion en carrière, je suis constamment à la recherche de nouveaux apprentissages et d’expériences pour approfondir mon expertise et devenir une véritable professionnelle des réseaux informatiques.</p>
+            <br/>
+        </div>
+    </section>
+
+    <!-----------FORMATIONS---------------------------------------------------------------->
+    <section class="formations" id="formations">
+        <h2 class="heading">FORMATIONS</h2>
+
+        <div class="scolaire-row">
+            <div class="scolaire-column">
+                <h3 class="title">Cursus Scolaire <i class="bx bxs-graduation"></i></h3>
+
+                <div class="scolaire-box">
+                    <div class="scolaire-content">
+                        <div class="content">
+                            <div class="year"><i class="bx bxs-calendar"></i>2025 - 2026</div>
+                            <h3>BTS SIO (SISR) - <a href="https://pia.ac-paris.fr/serail/jcms/s2_271354/fr/accueil" target="_blank">Lycée Turgot</a> (Paris)</h3>
+                            <ul>
+                                <li>Administration des systèmes et des réseaux</li>
+                                <li>Sécurisation des infrastructures</li>
+                                <li>Virtualisation et cloud computing</li>
+                                <li>Supervision et maintenance</li>
+                                <li>Gestion des bases de données</li>
+                                <li>Mise en place des services réseau</li>
+                                <li>Documentation et veille technologique</li>
+                            </ul>
+                            <div class="content-decs"><a href="https://www.education.gouv.fr/bo/2011/22/esrs1108973a.htm" target="_blank">En savoir plus sur le BTS SIO...</a></div>
+                        </div>
+                    </div>
+
+                    <div class="scolaire-content">
+                        <div class="content">
+                            <div class="year"><i class="bx bxs-calendar"></i>2024 - 2025</div>
+                            <h3>BAC Pro Systèmes Numériques (RISC) - <a href="https://lyc-conde-sarcelles.ac-versailles.fr/" target="_blank">Lycée professionnel Maryse-Condé</a> (Sarcelles)</h3>
+                            <ul>
+                                <li>Administration des systèmes et des réseaux</li>
+                                <li>Installation, configuration et sécurisation des équipements réseau</li>
+                                <li>Maintenance et dépannage des réseaux</li>
+                                <li>Services réseaux</li>
+                                <li>Documentation et veille technologique</li>
+                            </ul>
+                            <div class="content-decs"><a href="https://www.education.gouv.fr/bo/16/Hebdo13/MENE1606239A.htm" target="_blank">En savoir plus sur le BAC Pro SN...</a></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="scolaire-column">
+                <h3 class="title">Centre d'intérêt <i class='bx bxs-music' ></i></h3>
+
+                <div class="scolaire-box">
+                    <div class="scolaire-content">
+                        <div class="content">
+                            <div class="year"><i class="bx bxs-calendar"></i>2020 -2023</div>
+                            <h3>Musique</h3>
+                            <p> Pratique de la guitare de 2020 à 2021, ce qui m’a permis de développer ma créativité et ma patience.</p>
+                            <div class="content-decs"><a href="https://www.villedegarges.fr/sites/default/files/plaquette_maison_des_arts_bat.pdf" target="_blank">En savoir plus sur la maison de arts à garges les gonesse...</a></div>
+                        </div>
+                    </div>
+
+                    <div class="scolaire-content">
+                        <div class="content">
+                            <div class="year"><i class="bx bxs-calendar"></i>2023 - 2024</div>
+                            <h3>>Sports</h3>
+                            <p>Pratique du handball de 2023 à 2024, une expérience qui m’a appris l’esprit d’équipe et la persévérance.</p>
+                            <div class="content-decs"><a href="https://garge-handball.clubeo.com/">En savoir plus sur le garge-handball club</a></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-----------EXPERIENCES---------------------------------------------------------------->
+    <section class="experiences" id="experiences">
+        <h2 class="heading">EXPERIENCES</h2>
+
+        <div class="experiences-row">
+            <div class="experiences-column">
+                <h3 class="title">BTS SIO  <i class="fas fa-desktop"></i></h3>
+
+                <div class="experiences-box">
+                    <div class="experiences-content">
+                        <div class="content">
+                            <div class="rapport">
+                                <p>Rapport de stage<a href="Rapport_du_stage_S.pdf" target="_blank"><i class='bx bxs-file-pdf bx-lg'></i></a>
+                            </div>
+                            <div class="year"><i class="bx bxs-calendar"></i>DU 11/04/2023 à 03/06/2023</div>
+                            <h3>Stage : Développement de site web avec WordPress - <a href="https://www.featway.fr/" target="_blank">entreprises featway</a> (Paris, France)</h3>
+                            <ul>
+                                <li>Recherches :</li>
+                                <ul>
+                                    <li>Analyse des besoins et conception du site.</li>
+                                    <li>Installation et configuration de WordPress.</li>
+                                    <li>Choix et installation des plugins nécessaires.</li>
+                                    <li>Création de l’identité visuelle du site.</li>
+                                    <li>Mise en place du module e-commerce (WooCommerce).</li>
+                                    <li>Création des pages principales du site.</li>
+                                    <li>Configuration de la sécurité et des sauvegardes</li>
+                                    <li>Optimisation SEO pour le référencement</li>
+                                    <li>Tests de fonctionnement et compatibilité mobile</li>
+                                    <li>Mise en ligne du site et documentation pour l’utilisateur</li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experiences-content">
+                        <div class="content">
+                            <div class="rapport">
+                                <p>Rapport de stage<a href="Rapport_du_stage_Chaima_P.pdf" target="_blank"><i class='bx bxs-file-pdf bx-lg'></i></a>
+                            </div>
+                            <div class="year"><i class="bx bxs-calendar"></i>DU 29/01/2024 À 05/04/2024</div>
+                            <h3>Stage : Administration systèmes & réseaux - <a href="https://www.featway.fr/" target="_blank">entreprises featway</a> (Paris, France)</h3>
+                            <ul>
+                                <li>Installation de VirtualBox et configuration des machines virtuelles.</li>
+                                <li>Installation et configuration du serveur pfSense.</li>
+                                <li>Configuration des adresses IP du réseau.</li>
+                                <li>Mise en place d’un serveur DHCP dans pfSense.</li>
+                                <li>Paramétrage du routage et passerelle réseau.</li>
+                                <li>Configuration du pare-feu (Firewall).</li>
+                                <li>Tests de connectivité réseau.</li>
+                                <li>Installation et configuration des systèmes clients.</li>
+                                <li>Surveillance et analyse du trafic.</li>
+                                <li>Documentation du projet.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experiences-content">
+                        <div class="content">
+                            <div class="rapport">
+                                <p>Rapport de stage<a href="Rapport_du_stage_Chaima__bac (5).pdf" target="_blank"><i class='bx bxs-file-pdf bx-lg'></i></a>
+                            </div>
+                            <div class="year"><i class="bx bxs-calendar"></i>DU 18/11/2024 À 10/01/202</div>
+                            <h3>Stage : Développement d’une application  - <a href="https://www.featway.fr/" target="_blank">entreprises featway</a> (Paris, France)</h3>
+                            <ul>
+                                <li>Analyse des besoins fonctionnels.</li>
+                                <li>Conception de l’architecture MVC avec Spring Boot.</li>
+                                <li>Création de la base de données.</li>
+                                <li>Intégration de Spring JPA/Hibernate.</li>
+                                <li>Développement des fonctionnalités principales.</li>
+                                <li>Création d’une interface web dynamique.</li>
+                                <li>Sécurité et gestion des utilisateurs.</li>
+                                <li>Génération et export des bulletins.</li>
+                                <li>Tests et validation.</li>
+                                <li>Documentation et livraison du projet.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br/><br/>
+
+    </section>
+
+    <!-----------CERTIFICATIONS---------------------------------------------------------------->
+    <section class="certifications" id="certifications">
+        <h2 class="heading">CERTIFICATIONS</h2>
+
+        <!-- Premier groupe de certifications -->
+        <div class="certification-grid-wrapper">
+            <div class="certification-grid">
+                <h3>Attestation MOOC RGPD (CNIL) & SecNum (ANSSI)</h3>
+                <div class="certification-item mooc-rgpd">
+                    <img src="PGCD.png">
+                </div>
+                 <div class="certification-item mooc-rgpd">
+                    <img src="M-2.png">
+                </div>
+                <div class="certification-item mooc-rgpd">
+                    <img src="M-33.png">
+                </div>
+            </div>
+        </div>
+
+        <!-- Deuxième groupe de certifications -->
+        <div class="certification-grid-wrapper">
+            <div class="certification-grid">
+                <h3>Attestation Cisco</h3>
+                <div class="certification-item mooc-rgpd">
+                    <img src="Cisco.png">
+                </div>
+                <div class="certification-item mooc-rgpd">
+                    <img src="assets/pj/certif/network_basic_cisco.png">
+                </div>
+                <div class="certification-item mooc-rgpd">
+                    <img src="assets/pj/certif/intro_cyber_cisco.png">
+                </div>
+            </div>
+        </div>
+
+        <!-- Troisième groupe de certifications -->
+        <div class="certification-grid-wrapper">
+            <div class="certification-grid">
+                <h3>Autres</h3>
+                <div class="certification-item mooc-rgpd">
+                    <img src="P1.png">
+                </div>
+                <div class="certification-item mooc-rgpd">
+                    <img src="P2.png">
+                </div>
+                 <div class="certification-item mooc-rgpd">
+                    <img src="P3.png">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-----------COMPETENCES---------------------------------------------------------------->
+    <section class="skills" id="competences">
+        <h2 class="heading">COMPETENCES</h2>
+
+        <div class="skills-grid">
+
+            <!-- Systèmes -->
+            <div class="skill-box">
+                <div class="icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <h3>Systèmes</h3>
+                <ul>
+                    <li>Installation/configuration des OS, des équipements</li>
+                    <li>Gestion des utilisateurs,des droits d'accès, des fichiers</li>
+                    <li>Sécurisation des systèmes (mises à jour, antivirus, ...)</li>
+                    <li>Automatisation des tâches système (scripts Bash)</li>
+                    <li>Surveillance de l'intégrité des systèmes</li>
+                    <li>Dépannage des pannes systèmes</li>
+                    <li>Gestion de base de données</li>
+                </ul>
+                <p>Windows, Windows Server, Ubuntu, PfSense</p>
+            </div>
+
+            <!-- Réseaux -->
+            <div class="skill-box">
+                <div class="icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>Réseaux</h3>
+                <ul>
+                    <li>Mise en place de réseaux locaux (LAN)</li>
+                    <li>Configuration de routeurs et de commutateurs</li>
+                    <li>Configuration et gestion des pare-feu</li>
+                    <li>Dépannage et diagnostic réseau</li>
+                    <li>Analyse du trafic réseau</li>
+                    <li>Mise en place et gestion des VLANs</li>
+                    <li>Utilisation des outils de diagnostic</li>
+                </ul>
+                <p>Cisco, Packet Tracer, PfSense,</p>
+            </div>
+
+            <!-- Cybersécurité -->
+            <div class="skill-box">
+                <div class="icon">
+                    <i class='bx bxs-lock'></i>
+                </div>
+                <h3>Cybersécurité</h3>
+                <ul>
+                    <li>Protection des données personnelles</li>
+                    <li>Sensibilisation des utilisateurs</li>
+                    <li>Surveillance et analyse des logs</li>
+                    <li>Gestion de mot de passe et de leur complexité</li>
+                    <li>Détection des intrusions</li>
+                    <li>Analyse des menaces</li>
+                </ul>
+            </div>
+
+            <!-- Projet -->
+            <div class="skill-box">
+                <div class="icon">
+                    <i class='bx bx-user-circle'></i>
+                </div>
+                <h3>Gestion de projet</h3>
+                <ul>
+                    <li>Planification de projet </li>
+                    <li>Définition des objectifs et des livrables du projet</li>
+                    <li>Planification et attribution des tâches</li>
+                    <li>Suivi des délais et respect des échéances</li>
+                    <li>Gestion de la documentation de projet</li>
+                </ul>
+            </div>
+        </div>
+        <br/>
+
+        <center>
+            <p>Pour visualiser toutes les compétences :</p>
+            <p>
+                <a href="Copie de 8 - BTS SIO - Annexe 8-1 - Tableau de synthe╠Çse - Epreuve E5 - 2025 (1).pdf"
+                   target="_blank"
+                   class="btn">
+                    Tableau de synthèse .PDF
+                </a>
+                <a href="Copie de 8 - BTS SIO - Annexe 8-1 - Tableau de synthe╠Çse - Epreuve E5 - 2025.xlsx"
+                   target="_blank"
+                   class="btn">
+                    Tableau de synthèse .XLSX
+                </a>
+            </p>
+        </center>
+    </section>
+
+    <!-----------PROJETS---------------------------------------------------------------->
+    <section class="projet" id="projets">
+        <h2 class="heading">PROJETS</h2>
+
+        <div class="projet-grid">
+
+            <!-- Infra virtuel -->
+            <div class="projet-box">
+                <div class="icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Infrastructure Virtuel</h3>
+                <ul>
+                    <li>
+                        <span>Installation/Configuration Windows server DHCP</span>
+                    </li>
+                    <li>
+                        <span>Installation d'un server LAMP</span>
+                        <ul>
+                            <li>Step 1: Install Apache</li>
+                            <li>Step 2: Install MySQL</li>
+                            <li>Step 3: Install PHP</li>
+                            <li>Step 4: Test PHP Processing</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Installation d'un </span>
+                    </li>
+                    <li>
+                        <span>Portail captif avec PfSense</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Projets -->
+            <div class="projet-box">
+                <div class="icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <h3>Projets</h3>
+                <ul>
+                    <li>
+                        <span>Développement de site web</span>
+                        <a href="https://chaima951.github.io/site-foot/" target="_blank" class="bx bxs-file-pdf"></a>
+                          <ul>
+                            <li>
+                                <p>Cahier des charges</p>
+                                <a href="https://docs.google.com/document/d/1XZ_ax6Q86zLErj3cHxIVwiKCqsUyEeNaHr_FpZTWEaw/edit?usp=drive_link" target="_blank" class="bx bxs-file-pdf"></a>
+                            </li>
+                            <li>
+                                <p>Cahier des recettes</p>
+                                <a href="https://docs.google.com/spreadsheets/d/1WheyR_rvNHKzxDNE8-gBG5q97oO6xjlwopLeIFdpyR4/edit?usp=drive_link" target="_blank" class="bx bxs-file-pdf"></a>
+                            </li>
+                            <li>
+                                <p>Diagramme de gantt</p>
+                                <a href="https://drive.google.com/file/d/1EWmKAFSSDdjbMJwJxTdfxnQ49QBEZebB/view?usp=drive_link" target="_blank" class="bx bxs-file-pdf"></a>
+                            </li>
+                            <li>
+                                <p>Schema d'infrastructures</p>
+                                <a href="https://docs.google.com/document/d/1eo46lNZE1eaxurFIv9NAtzrdRu3qgJDcZRVXfryT2Hw/edit?usp=drive_link" target="_blank" class="bx bxs-file-pdf"></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Développement de site web</span>
+                         <a href="https://sansikag.github.io/Projet-Laurine/" target="_blank" class="bx bxs-file-pdf"></a>
+                         <ul>
+                    <li>
+                                <p>Cahier des charges</p>
+                                <a href="https://docs.google.com/document/d/1XCVdYUDkRSFTv3ktUTo1PqsleWNYzK1h9IuCcFXwby8/edit?usp=drive_link" target="_blank" class="bx bxs-file-pdf"></a>
+                            </li>
+                            <li>
+                                <p>Cahier des recettes</p>
+                                <a href="https://docs.google.com/spreadsheets/d/1hxpSe29FdL2TOMWev00ilUPYgu8URpFnIbcH321Sj9E/edit?usp=drive_link" target="_blank" class="bx bxs-file-pdf"></a>
+                            </li>
+                            <li>
+                                <p>Diagramme de gantt</p>
+                                <a href="https://drive.google.com/file/d/1A1IVcDI-Z-WIcdiAclU-yS-cBP0WGY0y/view?usp=drive_link" target="_blank" class="bx bxs-file-pdf"></a>
+                            </li>
+                            <li>
+                                <p>Schema d'infrastructures</p>
+                                <a href="https://docs.google.com/document/d/1makDHLQRWpj4XIgiQrmGjwewIA5wdn_UnSiH0ZFSHqY/edit?usp=drive_link" target="_blank" class="bx bxs-file-pdf"></a>
+                            </li>
+                         </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-----------FOOTER---------------------------------------------------------------->
+    <footer class="footer">
+        <div class="social">
+            <a href="https://github.com/" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+
+        <p class="copyright">
+            Chaima Abdelhanine| All Right Reserved
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Ton script JS pour le menu burger par exemple -->
+    <script src="assets/js/script.js" defer></script>
+</body>
+</html>

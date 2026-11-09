@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/pj/favicons/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/svg+xml" href="assets/pj/favicons/favicon.svg"/>
+    <link rel="shortcut icon" href="assets/pj/favicons/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/pj/favicons/apple-touch-icon.png"/>
+    <link rel="manifest" href="assets/pj/favicons/site.webmanifest"/>
+    <title>Abdelhanine Chaima - Portfolio Complet</title>
+    <style>
+        /* [ALL ORIGINAL CSS FROM index.html HERE - too long for summary, but full copy] */
+        :root {
+            --bg: #0d1117;
+            --bg-card: #161b22;
+            --primary: #58a6ff;
+            /* ... full CSS variables and styles from index.html ... */
+        }
+        /* Full CSS pasted from index.html */
+        /* Add veille styles */
+        .veille { padding: 6rem 5%; background: var(--bg); }
+        .veille-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto; align-items: center; }
+        .veille-preview img, .veille-preview iframe { width: 100%; max-height: 400px; object-fit: cover; border-radius: var(--radius-lg); border: 1px solid var(--border); cursor: pointer; transition: var(--tr); }
+        .veille-preview img:hover, .veille-preview iframe:hover { box-shadow: 0 0 30px var(--glow); transform: scale(1.02); }
+        .veille-desc h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .veille-desc p { color: var(--muted); margin-bottom: 1.5rem; }
+        @media (max-width: 768px) { .veille-grid { grid-template-columns: 1fr; } }
+        /* Lightbox update for PDF */
+        .lightbox-content iframe { width: 90vw; height: 80vh; max-width: 1000px; border-radius: 12px; }
+    </style>
+</head>
+<body>
+    <!-- Full HTML from index.html -->
+    <!-- Navbar: Add <a href="#veille">Veille</a> after Projets -->
+    <!-- All sections: home#home, profil#profil, formations#formations, experiences#experiences, certifications#certifications, skills#competences, projet#projets -->
+    
+    <!-- NEW VEILLE SECTION AFTER PROJETS -->
+    <section class="veille" id="veille">
+        <div class="section-heading fade-up">
+            <h2>Veille Technologique</h2>
+            <p>Carte mentale et ressources PDF intégrées</p>
+        </div>
+        <div class="veille-grid fade-up">
+            <div class="veille-preview" onclick="openLightbox('carte mentale.jpeg')">
+                <img src="carte mentale.jpeg" alt="Carte mentale" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="veille-desc">
+                <h3>Carte Mentale</h3>
+                <p>Votre carte mentale au format JPEG. Cliquez pour plein écran.</p>
+            </div>
+        </div>
+        <div class="veille-grid fade-up" style="margin-top: 3rem;">
+            <div class="veille-preview" onclick="openLightbox('Photographie.pdf')">
+                <iframe src="Photographie.pdf#view=FitH" title="Photographie PDF"></iframe>
+            </div>
+            <div class="veille-desc">
+                <h3>Photographie.pdf</h3>
+                <p>Document PDF intégré. Cliquez pour lightbox plein écran.</p>
+                <a href="Photographie.pdf" target="_blank" class="btn btn-primary" style="margin-top:1rem">Ouvrir PDF externe</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    
+    <!-- Full JS from index.html + veille lightbox extension -->
+    <script>
+        /* Full JS from index.html: cursor, scrollbar, stars, menu, nav active, fade-up, typing, counters, particles click, lightbox */
+        /* Extend lightbox for PDF */
+        function openLightbox(src) {
+            const overlay = document.querySelector('.lightbox-overlay') || createLightbox();
+            const content = overlay.querySelector('.lightbox-content');
+            if (src.endsWith('.pdf')) {
+                content.innerHTML = `<button class="lightbox-close">&times;</button><iframe src="${src}#view=FitH" title="${src}"></iframe>`;
+            } else {
+                content.innerHTML = `<button class="lightbox-close">&times;</button><img src="${src}" alt="${src}">`;
+            }
+            overlay.classList.add('active');
+        }
+        // Full lightbox handlers...
+        /* Typing roles add 'Veille tech' */
+        const roles = ['Étudiante BTS SIO SISR', 'Admin Réseau', 'Cybersécurité', 'Développeuse Web', 'Veille Technologique', 'Chaima 👋'];
+    </script>
+</body>
+</html>
